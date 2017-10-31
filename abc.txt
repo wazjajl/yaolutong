@@ -1,0 +1,105 @@
+爬到所有产品链接入库，并增加一个是否产品详情入库的字段；
+
+0、产品基本信息入库
+1、产品详情入库
+	产品基本信息和详情入库后，在产品链接库标记入库成
+2、公司联系方式入库
+3、图片保存到目录，路径不变
+
+疑问：
+1.数据库连接如果长时间未被close并且一直在写入或查询数据，是否会被mysql主动关闭连接?
+2.findall一次性匹配完成，和分开匹配，哪一个效率更高?(自己做实验是分开匹配稍优)
+
+create table `product_page_url` (
+`id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`product_page_url` varchar(255) NOT NULL,
+`store_result` varchar(20) NOT NULL,
+PRIMARY KEY (`id`)) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+create table `product_basic` ( 
+`id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`product_id` bigint(14) unsigned NOT NULL,
+`product_name` varchar(64) NOT NULL,
+`approval_number` varchar(64) NOT NULL,
+`product_specifications` varchar(64) NOT NULL,
+`product_dosage` varchar(20) NOT NULL,
+`manufacture_factory` varchar(64) NOT NULL,
+`investment_enterprise` varchar(64) NOT NULL,
+`procuct_channels` varchar(64) NOT NULL,
+`procuct_category` varchar(64) NOT NULL,
+PRIMARY KEY (`id`)) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+
+create table `product_detail` ( 
+`id` int(10) unsigned NOT NULL AUTO_INCREMENT, 
+`product_id` bigint(14) unsigned NOT NULL, 
+`product_name` varchar(64) NOT NULL, 
+`product_properties` text NOT NULL,  
+`product_usage` varchar(256) NOT NULL, 
+`product_ingredients` text NOT NULL, 
+`product_description` text NOT NULL, 
+`product_pack` varchar(256) NOT NULL,
+`product_character` text NOT NULL,
+`investment_area` varchar(20) NOT NULL,
+PRIMARY KEY (`id`)) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+create table `company_contact` ( 
+`id` int(10) unsigned NOT NULL AUTO_INCREMENT, 
+`investment_enterprise` varchar(64) NOT NULL, 
+`contact_name` varchar(64) NOT NULL, 
+`telphone` varchar(64) NOT NULL, 
+`mobilephone` varchar(64) NOT NULL, 
+`wechat` varchar(64) NOT NULL,  
+`qq` varchar(64) NOT NULL, 
+`mail` varchar(64) NOT NULL, 
+`website` varchar(64) NOT NULL, 
+`fax` varchar(64) NOT NULL,
+`address` varchar(256) NOT NULL,
+`postcode` varchar(64) NOT NULL,
+PRIMARY KEY (`id`)) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+insert into product_basic values(
+NULL,
+'96032',
+'大豆磷脂软胶囊',
+'国食健字G20110351',
+'100粒',
+'胶囊剂',
+'广州长生康生物科技有限公司',
+'广州映三红药业有限公司',
+'药店渠道,第三终端',
+'保健食品--免疫调节');
+
+insert into product_detail values(
+NULL,
+'96032',
+'潘高寿',
+'1.降低胆固醇和甘油三脂含量、降低血液粘稠度，防止血液凝固，促进血液循环、预防中风。
+2对高血脂、高血压、冠心病预防治疗，被称为“心脑血管的保护神”。
+3.增强记忆力,预防老年痴呆症。
+4.促进新陈代谢，可消除黑斑，增进皮肤营养。
+5.改善风湿患者的病痛症及生化指示。
+6.明目、改善视力、保护视网膜、增强免疫力。
+7.促进大脑神经系统与脑容积的增长和发育。
+8. 有助于肝细胞再生，促使脂肪降解排出，减少肝细胞内脂肪的沉积，从而可有效地防治脂肪肝和肝硬化。
+9. 增强了胰脏细胞的功能，从而升高了胰岛素的水平，进而降低了血糖水平。',
+'详见说明书',
+'详见说明书',
+'详见说明书',
+'详见说明书',
+'详见说明书',
+'全国');
+
+
+
+
+
+
+
+
+
+

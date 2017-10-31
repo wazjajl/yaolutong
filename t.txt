@@ -1,0 +1,6 @@
+create table `tt` (
+`id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`name` varchar(20) NOT NULL,
+`year` varchar(20) NOT NULL,
+`price` varchar(20) NOT NULL,
+PRIMARY KEY (`id`)) ENGINE=innodb AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
